@@ -3,7 +3,7 @@
 freeboard.loadWidgetPlugin({
 
  
-		"type_name"   : "smarthome_sherpa",
+		"type_name"   : "myWidgetPlugin",
 		"display_name": "Smarthome Sherpa",
         "description" : "Created by <strong>Bryan Chen</strong> on 5/16/17",
 
