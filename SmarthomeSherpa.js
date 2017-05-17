@@ -130,8 +130,8 @@ var smarthomeSherpa = function (settings) {
     };
 
     freeboard.loadWidgetPlugin({
-        type_name: "text_widget",
-        display_name: "Text",
+        type_name: "smarthomeSherpa",
+        display_name: "Smarthome Sherpa",
         "external_scripts" : [
             "plugins/thirdparty/jquery.sparkline.min.js"
         ],
