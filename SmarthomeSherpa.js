@@ -25,7 +25,7 @@
 
         this.render = function (element) {
             width = $(element).width();
-            height = this.getHeight()*60;//$(element).height();
+            height = $(element).height();
 
             var radius = Math.min(width, height) / 2 - strokeWidth * 2;
 
