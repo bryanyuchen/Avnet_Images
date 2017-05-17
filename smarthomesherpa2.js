@@ -50,7 +50,7 @@ var valueStyle = freeboard.getStyleString("values");
 			$(element).empty();
 
 			$(displayElement)
-				append(titleElement))
+				.append($('<div class="tw-tr"></div>').append(titleElement))
 				.append($('<div class="tw-tr"></div>').append($('<div class="tw-value-wrapper tw-td"></div>').append(valueElement).append(imageElement).append(unitsElement)))
 				.append($('<div class="tw-tr"></div>').append(sparklineElement));
 
@@ -100,6 +100,16 @@ var valueStyle = freeboard.getStyleString("values");
 
 			var valueFontSize = 30;
 
+			if(newSettings.size == "big")
+			{
+				valueFontSize = 75;
+
+				if(newSettings.sparkline)
+				{
+					valueFontSize = 60;
+				}
+			}
+
 			valueElement.css({"font-size" : valueFontSize + "px"});
 
 			updateValueSizing();
@@ -131,7 +141,7 @@ var valueStyle = freeboard.getStyleString("values");
         }
 
         this.getHeight = function () {
-            return 10;
+            return 4;
         }
 
         this.onSettingsChanged(settings);
