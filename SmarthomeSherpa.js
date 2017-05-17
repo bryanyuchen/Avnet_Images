@@ -48,8 +48,8 @@ freeboard.loadWidgetPlugin({
 		var self = this;
 		var currentSettings = settings;
 
- 
-		var myTextElement = $("<span></span>");
+
+		var myTextElement = $("<span>hello world span!</span>");
 
  
 		self.render = function(containerElement)
