@@ -50,7 +50,7 @@ var valueStyle = freeboard.getStyleString("values");
 			$(element).empty();
 
 			$(displayElement)
-				append(titleElement))
+				.append($('<div class="tw-tr"></div>').append(titleElement))
 				.append($('<div class="tw-tr"></div>').append($('<div class="tw-value-wrapper tw-td"></div>').append(valueElement).append(imageElement).append(unitsElement)))
 				.append($('<div class="tw-tr"></div>').append(sparklineElement));
 
