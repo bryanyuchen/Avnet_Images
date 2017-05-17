@@ -100,6 +100,16 @@ var valueStyle = freeboard.getStyleString("values");
 
 			var valueFontSize = 30;
 
+			if(newSettings.size == "big")
+			{
+				valueFontSize = 75;
+
+				if(newSettings.sparkline)
+				{
+					valueFontSize = 60;
+				}
+			}
+
 			valueElement.css({"font-size" : valueFontSize + "px"});
 
 			updateValueSizing();
@@ -131,7 +141,7 @@ var valueStyle = freeboard.getStyleString("values");
         }
 
         this.getHeight = function () {
-            return 10;
+            return 4;
         }
 
         this.onSettingsChanged(settings);
