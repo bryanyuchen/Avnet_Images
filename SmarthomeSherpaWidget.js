@@ -44,7 +44,8 @@ var valueStyle = freeboard.getStyleString("values");
 
         var currentSettings = settings;
 		var displayElement = $('<div class="tw-display"></div>');
-		var titleElement = $('<h2 class="section-title tw-title tw-td"><img src = "https://c1.staticflickr.com/5/4159/33782256364_a0a64b798b.jpg" style="width:100%"></h2>');
+		var titleElement = $('<h2 class="section-title tw-title tw-td"></h2>');
+		var imageElement = $('<img src = "https://c1.staticflickr.com/5/4159/33782256364_a0a64b798b.jpg" id="my_image" style="width:100%">');
         var valueElement = $('<div class="tw-value"></div>');
         var unitsElement = $('<div class="tw-unit"></div>');
         var sparklineElement = $('<div class="tw-sparkline tw-td"></div>');
@@ -66,7 +67,7 @@ var valueStyle = freeboard.getStyleString("values");
 
 			$(displayElement)
 				.append($('<div class="tw-tr"></div>').append(titleElement))
-				.append($('<div class="tw-tr"></div>').append($('<div class="tw-value-wrapper tw-td"></div>').append(valueElement).append(unitsElement)))
+				.append($('<div class="tw-tr"></div>').append($('<div class="tw-value-wrapper tw-td"></div>').append(valueElement).append(imageElement).append(unitsElement)))
 				.append($('<div class="tw-tr"></div>').append(sparklineElement));
 
 			$(element).append(displayElement);
