@@ -8,7 +8,7 @@
         var triangle;
         var width, height;
         var currentValue = 0;
-        var valueDiv = $('<p style="font-size:72px; font-weight:bold; align: center;"></p>');
+        var valueDiv = $('<p style="font-size:72px; color: rgb(212,212,212); text-align: center;"></p>');
         var unitsDiv = $('<div></div>');
 
         function polygonPath(points) {
