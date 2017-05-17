@@ -8,7 +8,7 @@
         var triangle;
         var width, height;
         var currentValue = 0;
-        var valueDiv = $('<div class="widget-big-text"></div>');
+        var valueDiv = $('<div style="font-size:36px; font-weight:bold;"></div>');
         var unitsDiv = $('<div></div>');
 
         function polygonPath(points) {
@@ -25,7 +25,7 @@
 
         this.render = function (element) {
             width = $(element).width();
-            height = $(element).height();
+            height = this.getHeight()*60;//$(element).height();
 
             var radius = Math.min(width, height) / 2 - strokeWidth * 2;
 
