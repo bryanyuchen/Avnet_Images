@@ -79,11 +79,11 @@ var smarthomeSherpa = function (settings) {
 
 			if(newSettings.size == "big")
 			{
-				valueFontSize = 75;
+				valueFontSize = 65;
 
 				if(newSettings.sparkline)
 				{
-					valueFontSize = 60;
+					valueFontSize = 50;
 				}
 			}
 
