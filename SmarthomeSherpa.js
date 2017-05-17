@@ -8,7 +8,7 @@
         var triangle;
         var width, height;
         var currentValue = 0;
-        var valueDiv = $('<div style="font-size:36px; font-weight:bold;"></div>');
+        var valueDiv = $('<div style="font-size:72px; font-weight:bold; color: white; text-align: center;"></div>');
         var unitsDiv = $('<div></div>');
 
         function polygonPath(points) {
@@ -78,7 +78,7 @@
 
     freeboard.loadWidgetPlugin({
         type_name: "smarthomeSherpa",
-        display_name: "Smarhome Sherpa Pointer",
+        display_name: "Smarthome Sherpa Pointer",
         "external_scripts" : [
             "plugins/thirdparty/raphael.2.1.0.min.js"
         ],
