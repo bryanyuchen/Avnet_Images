@@ -11,31 +11,20 @@ var valueStyle = freeboard.getStyleString("values");
 
         var thisGaugeID = "gauge-" + gaugeID++;
         var gaugeElement = $('<div class="gauge-widget" id="' + thisGaugeID + '"></div>');
-	var imageElement = $('<img src = "https://c1.staticflickr.com/5/4159/33782256364_a0a64b798b.jpg" id="my_image" style="width:100%">');
-        var gaugeObject;
-        var rendered = false;
+		var imageElementTop = $('<img src = "https://c1.staticflickr.com/5/4159/33782256364_a0a64b798b.jpg" id="my_image" style="width:100%">');
+		var imageElementBot = $('<img src = "https://c1.staticflickr.com/5/4158/33781839124_3a8cfff44b_z.jpg" id="my_image" style="width:100%">');
 
         var currentSettings = settings;
 
         this.render = function (element) {
-            rendered = true;
-            $(element).append(imageElement).append($('<div class="gauge-widget-wrapper"></div>').append(gaugeElement));
+            $(element).append(imageElementTop).append(imageElementBot);
         }
 
         this.onSettingsChanged = function (newSettings) {
-            if (newSettings.min_value != currentSettings.min_value || newSettings.max_value != currentSettings.max_value || newSettings.units != currentSettings.units) {
                 currentSettings = newSettings;
-            }
-            else {
-                currentSettings = newSettings;
-            }
-
         }
 
         this.onCalculatedValueChanged = function (settingName, newValue) {
-            if (!_.isUndefined(gaugeObject)) {
-                gaugeObject.refresh(Number(newValue));
-            }
         }
 
         this.onDispose = function () {
