@@ -40,11 +40,14 @@ var valueStyle = freeboard.getStyleString("values");
         type_name: "smarthomeSherpa",
         display_name: "SmarthomeSherpa Widget",
         "external_scripts" : [
+            "plugins/thirdparty/raphael.2.1.0.min.js",
+            "plugins/thirdparty/justgage.1.0.1.js"
         ],
         settings: [
+
             {
                 name: "value",
-                display_name: "Value (insert datasource)",
+                display_name: "Datasource",
                 type: "calculated"
             }
         ],
