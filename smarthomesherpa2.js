@@ -1,98 +1,184 @@
 (function()
 {
-	freeboard.addStyle('div.pointer-value', "position:absolute;height:95px;margin: auto;top: 0px;bottom: 0px;width: 100%;text-align:center;");
-    var SSpointerWidget = function (settings) {
-        var self = this;
-        var paper;
-        var strokeWidth = 3;
-        var triangle;
-        var width, height;
-        var currentValue = 0;
-        var valueDiv = $('<p style="font-size:68px; color: rgb(212,212,212); position:relative; left:-10px; align: center"></p>');
-        var unitsDiv = $('<div position:absolute; left:130px; top:20px;></div>');
+var valueStyle = freeboard.getStyleString("values");
 
-        function polygonPath(points) {
-            if (!points || points.length < 2)
-                return [];
-            var path = []; //will use path object type
-            path.push(['m', points[0], points[1]]);
-            for (var i = 2; i < points.length; i += 2) {
-                path.push(['l', points[i], points[i + 1]]);
-            }
-            path.push(['z']);
-            return path;
-        }
+	freeboard.addStyle('.widget-big-text', valueStyle + "font-size:75px;");
+
+	freeboard.addStyle('.tw-display', 'width: 100%; height:100%; display:table; table-layout:fixed;');
+
+	freeboard.addStyle('.tw-tr','display:table-row;');
+
+	freeboard.addStyle('.tw-tg','display:table-row-group;');
+
+	freeboard.addStyle('.tw-tc','display:table-caption;');
+
+	freeboard.addStyle('.tw-td','display:table-cell;');
+
+	freeboard.addStyle('.tw-value',	valueStyle +'overflow: hidden;' +'display: inline-block;' +'text-overflow: ellipsis;');
+
+	freeboard.addStyle('.tw-unit','display: inline-block;' +'padding-left: 10px;' +	'padding-bottom: 1.1em;' +	'vertical-align: bottom;');
+	
+	freeboard.addStyle('.tw-value-wrapper',	'position: relative;' +	'vertical-align: middle;' +	'height:100%;');
+
+	freeboard.addStyle('.tw-sparkline',	'height:20px;');
+
+    var SSWidget = function (settings) {
+
+        var self = this;
+
+        var currentSettings = settings;
+		var displayElement = $('<div class="tw-display"></div>');
+		var titleElement = $('<h2 class="section-title tw-title tw-td"></h2>');
+		var imageElement = $('<img src = "https://c1.staticflickr.com/5/4159/33782256364_a0a64b798b.jpg" id="my_image" style="width:100%">');
+        var valueElement = $('<div class="tw-value"></div>');
+        var unitsElement = $('<div class="tw-unit"></div>');
+        var sparklineElement = $('<div class="tw-sparkline tw-td"></div>');
+
+		function updateValueSizing()
+		{
+			if(!_.isUndefined(currentSettings.units) && currentSettings.units != "") // If we're displaying our units
+			{
+				valueElement.css("max-width", (displayElement.innerWidth() - unitsElement.outerWidth(true)) + "px");
+			}
+			else
+			{
+				valueElement.css("max-width", "100%");
+			}
+		}
 
         this.render = function (element) {
-            width = $(element).width();
-            height = this.getHeight()*60;//$(element).height();
+			$(element).empty();
 
-            var radius = Math.min(width, height) / 2 - strokeWidth * 2;
+			$(displayElement)
+				append(titleElement))
+				.append($('<div class="tw-tr"></div>').append($('<div class="tw-value-wrapper tw-td"></div>').append(valueElement).append(imageElement).append(unitsElement)))
+				.append($('<div class="tw-tr"></div>').append(sparklineElement));
 
-            paper = Raphael($(element).get()[0], width, height);
-            var circle = paper.circle(width / 2, height / 2, radius);
-            circle.attr("stroke", "#FF9900");
-            circle.attr("stroke-width", strokeWidth);
+			$(element).append(displayElement);
 
-            triangle = paper.path(polygonPath([width / 2, (height / 2) - radius + strokeWidth, 15, 20, -30, 0]));
-            triangle.attr("stroke-width", 0);
-            triangle.attr("fill", "#fff");
-
-            $(element).append($('<div class="pointer-value"></div>').append(valueDiv).append(unitsDiv));
+			updateValueSizing();
         }
 
         this.onSettingsChanged = function (newSettings) {
-            unitsDiv.html(newSettings.units);
+            currentSettings = newSettings;
+
+			var shouldDisplayTitle = (!_.isUndefined(newSettings.title) && newSettings.title != "");
+			var shouldDisplayUnits = (!_.isUndefined(newSettings.units) && newSettings.units != "");
+
+			if(newSettings.sparkline)
+			{
+				sparklineElement.attr("style", null);
+			}
+			else
+			{
+				delete sparklineElement.data().values;
+				sparklineElement.empty();
+				sparklineElement.hide();
+			}
+
+			if(shouldDisplayTitle)
+			{
+				titleElement.html((_.isUndefined(newSettings.title) ? "" : newSettings.title));
+				titleElement.attr("style", null);
+			}
+			else
+			{
+				titleElement.empty();
+				titleElement.hide();
+			}
+
+			if(shouldDisplayUnits)
+			{
+				unitsElement.html((_.isUndefined(newSettings.units) ? "" : newSettings.units));
+				unitsElement.attr("style", null);
+			}
+			else
+			{
+				unitsElement.empty();
+				unitsElement.hide();
+			}
+
+			var valueFontSize = 30;
+
+			valueElement.css({"font-size" : valueFontSize + "px"});
+
+			updateValueSizing();
         }
 
+		this.onSizeChanged = function()
+		{
+			updateValueSizing();
+		}
+
         this.onCalculatedValueChanged = function (settingName, newValue) {
-            if (settingName == "direction") {
-                if (!_.isUndefined(triangle)) {
-                    var direction = "r";
+            if (settingName == "value") {
 
-                    var oppositeCurrent = currentValue + 180;
-
-                    if (oppositeCurrent < newValue) {
-                        //direction = "l";
-                    }
-
-                    triangle.animate({transform: "r" + newValue + "," + (width / 2) + "," + (height / 2)}, 250, "bounce");
+                if (currentSettings.animate) {
+                    easeTransitionText(newValue, valueElement, 500);
+                }
+                else {
+                    valueElement.text(newValue);
                 }
 
-                currentValue = newValue;
-            }
-            else if (settingName == "value_text") {
-                valueDiv.html(newValue);
+                if (currentSettings.sparkline) {
+                    addValueToSparkline(sparklineElement, newValue);
+                }
             }
         }
 
         this.onDispose = function () {
+
         }
 
         this.getHeight = function () {
-            return 4;
+            return 10;
         }
 
         this.onSettingsChanged(settings);
     };
 
     freeboard.loadWidgetPlugin({
-        type_name: "smarthomeSherpa",
-        display_name: "Smarthome Sherpa Pointer",
+        type_name: "SmarthomeSherpa",
+        display_name: "SmarthomeSherpa",
         "external_scripts" : [
-            "plugins/thirdparty/raphael.2.1.0.min.js"
+            "plugins/thirdparty/jquery.sparkline.min.js"
         ],
         settings: [
             {
-                name: "direction",
-                display_name: "Direction",
-                type: "calculated",
-                description: "In degrees"
+                name: "title",
+                display_name: "Title",
+                type: "text"
             },
             {
-                name: "value_text",
-                display_name: "Value Text",
+                name: "size",
+                display_name: "Size",
+                type: "option",
+                options: [
+                    {
+                        name: "Regular",
+                        value: "regular"
+                    },
+                    {
+                        name: "Big",
+                        value: "big"
+                    }
+                ]
+            },
+            {
+                name: "value",
+                display_name: "Value",
                 type: "calculated"
+            },
+            {
+                name: "sparkline",
+                display_name: "Include Sparkline",
+                type: "boolean"
+            },
+            {
+                name: "animate",
+                display_name: "Animate Value Changes",
+                type: "boolean",
+                default_value: true
             },
             {
                 name: "units",
@@ -101,7 +187,8 @@
             }
         ],
         newInstance: function (settings, newInstanceCallback) {
-            newInstanceCallback(new SSpointerWidget(settings));
+            newInstanceCallback(new SSWidget(settings));
         }
     });
+
 }());
