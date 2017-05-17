@@ -1,20 +1,20 @@
 (function()
 {
-var myWidgetPlugin = function(settings)
+var SmarthomeSherpa = function(settings)
 	{
 		var self = this;
 		var currentSettings = settings;
+		var titleElement = $('<h2 class="section-title"></h2>');
 
-
-		var myTextElement = $("<span>hello world span!</span>");
+		var myTextElement = $("<div>hello world span!</div>");
 
  
-		self.render = function(containerElement)
+		this.render = function(containerElement)
 		{
-			$(containerElement).append(myTextElement);
+			$(containerElement).append(titleElement).append(myTextElement);
 		}
 
-		self.getHeight = function()
+		this.getHeight = function()
 		{
 			if(currentSettings.size == "big")
 			{
@@ -26,23 +26,24 @@ var myWidgetPlugin = function(settings)
 			}
 		}
 
-		self.onSettingsChanged = function(newSettings)
+		this.onSettingsChanged = function(newSettings)
 		{
 
 			currentSettings = newSettings;
+			titleElement.html((_.isUndefined(newSettings.title) ? "" : newSettings.title));
 		}
 
-		self.onCalculatedValueChanged = function(settingName, newValue)
+		this.onCalculatedValueChanged = function(settingName, newValue)
 		{
 
 			if(settingName == "the_text")
 			{
  
-				$(myTextElement).html(newValue);
+				$(myTextElement).html("Hello <b>world!</b>");//newValue);
 			}
 		}
 
-		self.onDispose = function()
+		this.onDispose = function()
 		{
 		}
 	}
@@ -50,7 +51,7 @@ var myWidgetPlugin = function(settings)
 freeboard.loadWidgetPlugin({
 
  
-		"type_name"   : "myWidgetPlugin",
+		"type_name"   : "SmarthomeSherpa",
 		"display_name": "Smarthome Sherpa",
         "description" : "Created by <strong>Bryan Chen</strong> on 5/16/17",
 
@@ -60,6 +61,11 @@ freeboard.loadWidgetPlugin({
  
 		"fill_size" : false,
 		"settings"    : [
+			{
+                name: "title",
+                display_name: "Title",
+                type: "text"
+            },
 			{
 				"name"        : "the_text",
 				"display_name": "Some Text",
@@ -84,7 +90,7 @@ freeboard.loadWidgetPlugin({
  
 		newInstance   : function(settings, newInstanceCallback)
 		{
-			newInstanceCallback(new myWidgetPlugin(settings));
+			newInstanceCallback(new SmarthomeSherpa(settings));
 		}
 	});
 }());
