@@ -7,7 +7,7 @@ var valueStyle = freeboard.getStyleString("values");
     var SSWidget = function (settings) {
         var self = this;
 
-        var imageElement = $('<div class="image-widget-wrapper" ></div>');
+        var imageElement = $('<div class="image-widget-wrapper" style="background-color: rgb(65,195,99);"></div>');
 		var imageElementTop = $('<img src = "https://c1.staticflickr.com/5/4159/33782256364_a0a64b798b.jpg" id="my_image" style="width:100%">');
 		var imageElementBot = $('<img src = "https://c1.staticflickr.com/5/4158/33781839124_3a8cfff44b_z.jpg" id="my_image" style="width:100%">');
 
