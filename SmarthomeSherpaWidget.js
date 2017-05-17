@@ -6,37 +6,21 @@ var valueStyle = freeboard.getStyleString("values");
 
 	freeboard.addStyle('.tw-display', 'width: 100%; height:100%; display:table; table-layout:fixed;');
 
-	freeboard.addStyle('.tw-tr',
-		'display:table-row;');
+	freeboard.addStyle('.tw-tr','display:table-row;');
 
-	freeboard.addStyle('.tw-tg',
-		'display:table-row-group;');
+	freeboard.addStyle('.tw-tg','display:table-row-group;');
 
-	freeboard.addStyle('.tw-tc',
-		'display:table-caption;');
+	freeboard.addStyle('.tw-tc','display:table-caption;');
 
-	freeboard.addStyle('.tw-td',
-		'display:table-cell;');
+	freeboard.addStyle('.tw-td','display:table-cell;');
 
-	freeboard.addStyle('.tw-value',
-		valueStyle +
-		'overflow: hidden;' +
-		'display: inline-block;' +
-		'text-overflow: ellipsis;');
+	freeboard.addStyle('.tw-value',	valueStyle +'overflow: hidden;' +'display: inline-block;' +'text-overflow: ellipsis;');
 
-	freeboard.addStyle('.tw-unit',
-		'display: inline-block;' +
-		'padding-left: 10px;' +
-		'padding-bottom: 1.1em;' +
-		'vertical-align: bottom;');
+	freeboard.addStyle('.tw-unit','display: inline-block;' +'padding-left: 10px;' +	'padding-bottom: 1.1em;' +	'vertical-align: bottom;');
+	
+	freeboard.addStyle('.tw-value-wrapper',	'position: relative;' +	'vertical-align: middle;' +	'height:100%;');
 
-	freeboard.addStyle('.tw-value-wrapper',
-		'position: relative;' +
-		'vertical-align: middle;' +
-		'height:100%;');
-
-	freeboard.addStyle('.tw-sparkline',
-		'height:20px;');
+	freeboard.addStyle('.tw-sparkline',	'height:20px;');
 
     var SSWidget = function (settings) {
 
@@ -116,11 +100,26 @@ var valueStyle = freeboard.getStyleString("values");
 
 			var valueFontSize = 30;
 
+			if(newSettings.size == "big")
+			{
+				valueFontSize = 75;
+
+				if(newSettings.sparkline)
+				{
+					valueFontSize = 60;
+				}
+			}
+
 			valueElement.css({"font-size" : valueFontSize + "px"});
 
 			updateValueSizing();
         }
-		
+
+		this.onSizeChanged = function()
+		{
+			updateValueSizing();
+		}
+
         this.onCalculatedValueChanged = function (settingName, newValue) {
             if (settingName == "value") {
 
@@ -159,7 +158,22 @@ var valueStyle = freeboard.getStyleString("values");
                 name: "title",
                 display_name: "Title",
                 type: "text"
-            }
+            },
+            {
+                name: "size",
+                display_name: "Size",
+                type: "option",
+                options: [
+                    {
+                        name: "Regular",
+                        value: "regular"
+                    },
+                    {
+                        name: "Big",
+                        value: "big"
+                    }
+                ]
+            },
             {
                 name: "value",
                 display_name: "Value",
