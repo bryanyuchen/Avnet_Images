@@ -16,8 +16,7 @@ var valueStyle = freeboard.getStyleString("values");
         var currentSettings = settings;
 
         this.render = function (element) {
-            $(element).append(imageElementTop);
-			$(element).append(imageElementBot);
+            $(element).append(imageElementTop, imageElementBot);
         }
 
         this.onSettingsChanged = function (newSettings) {
