@@ -1,49 +1,6 @@
 (function()
 {
-freeboard.loadWidgetPlugin({
-
- 
-		"type_name"   : "myWidgetPlugin",
-		"display_name": "Smarthome Sherpa",
-        "description" : "Created by <strong>Bryan Chen</strong> on 5/16/17",
-
- 
-		"external_scripts": [
-		],
- 
-		"fill_size" : false,
-		"settings"    : [
-			{
-				"name"        : "the_text",
-				"display_name": "Some Text",
-				"type"        : "calculated"
-			},
-			{
-				"name"        : "size",
-				"display_name": "Size",
-				"type"        : "option",
-				"options"     : [
-					{
-						"name" : "Regular",
-						"value": "regular"
-					},
-					{
-						"name" : "Big",
-						"value": "big"
-					}
-				]
-			}
-		],
- 
-		newInstance   : function(settings, newInstanceCallback)
-		{
-			newInstanceCallback(new myWidgetPlugin(settings));
-		}
-	});
-	
-	
-	
-	var myWidgetPlugin = function(settings)
+var myWidgetPlugin = function(settings)
 	{
 		var self = this;
 		var currentSettings = settings;
@@ -89,4 +46,45 @@ freeboard.loadWidgetPlugin({
 		{
 		}
 	}
+
+freeboard.loadWidgetPlugin({
+
+ 
+		"type_name"   : "myWidgetPlugin",
+		"display_name": "Smarthome Sherpa",
+        "description" : "Created by <strong>Bryan Chen</strong> on 5/16/17",
+
+ 
+		"external_scripts": [
+		],
+ 
+		"fill_size" : false,
+		"settings"    : [
+			{
+				"name"        : "the_text",
+				"display_name": "Some Text",
+				"type"        : "calculated"
+			},
+			{
+				"name"        : "size",
+				"display_name": "Size",
+				"type"        : "option",
+				"options"     : [
+					{
+						"name" : "Regular",
+						"value": "regular"
+					},
+					{
+						"name" : "Big",
+						"value": "big"
+					}
+				]
+			}
+		],
+ 
+		newInstance   : function(settings, newInstanceCallback)
+		{
+			newInstanceCallback(new myWidgetPlugin(settings));
+		}
+	});
 }());
