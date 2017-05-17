@@ -8,8 +8,8 @@
         var triangle;
         var width, height;
         var currentValue = 0;
-        var valueDiv = $('<p style="font-size:68px; color: rgb(212,212,212); position:absolute; top:-50px; text-align: center; "></p>');
-        var unitsDiv = $('<div style="top: 100px"></div>');
+        var valueDiv = $('<p style="font-size:68px; color: rgb(212,212,212); position:absolute; top:-60px; align: center; "></p>');
+        var unitsDiv = $('<div style="position:absolute"></div>');
 
         function polygonPath(points) {
             if (!points || points.length < 2)
