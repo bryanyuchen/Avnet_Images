@@ -1,176 +1,98 @@
 (function()
 {
-var smarthomeSherpa = function (settings) {
-
+	freeboard.addStyle('div.pointer-value', "position:absolute;height:95px;margin: auto;top: 0px;bottom: 0px;width: 100%;text-align:center;");
+    var pointerWidget = function (settings) {
         var self = this;
+        var paper;
+        var strokeWidth = 3;
+        var triangle;
+        var width, height;
+        var currentValue = 0;
+        var valueDiv = $('<div class="widget-big-text"></div>');
+        var unitsDiv = $('<div></div>');
 
-        var currentSettings = settings;
-		var displayElement = $('<div class="tw-display"></div>');
-		var titleElement = $('<h2 class="section-title tw-title tw-td"></h2>');
-        var valueElement = $('<div class="tw-value"></div>');
-        var unitsElement = $('<div class="tw-unit"></div>');
-        var sparklineElement = $('<div class="tw-sparkline tw-td"></div>');
-
-		function updateValueSizing()
-		{
-			if(!_.isUndefined(currentSettings.units) && currentSettings.units != "") // If we're displaying our units
-			{
-				valueElement.css("max-width", (displayElement.innerWidth() - unitsElement.outerWidth(true)) + "px");
-			}
-			else
-			{
-				valueElement.css("max-width", "100%");
-			}
-		}
+        function polygonPath(points) {
+            if (!points || points.length < 2)
+                return [];
+            var path = []; //will use path object type
+            path.push(['m', points[0], points[1]]);
+            for (var i = 2; i < points.length; i += 2) {
+                path.push(['l', points[i], points[i + 1]]);
+            }
+            path.push(['z']);
+            return path;
+        }
 
         this.render = function (element) {
-			$(element).empty();
+            width = $(element).width();
+            height = this.getHeight()*60;//$(element).height();
 
-			$(displayElement)
-				.append($('<div class="tw-tr"></div>').append(titleElement))
-				.append($('<div class="tw-tr"></div>').append($('<div class="tw-value-wrapper tw-td"></div>').append(valueElement).append(unitsElement)))
-				.append($('<div class="tw-tr"></div>').append(sparklineElement));
+            var radius = Math.min(width, height) / 2 - strokeWidth * 2;
 
-			$(element).append(displayElement);
+            paper = Raphael($(element).get()[0], width, height);
+            var circle = paper.circle(width / 2, height / 2, radius);
+            circle.attr("stroke", "#FF9900");
+            circle.attr("stroke-width", strokeWidth);
 
-			updateValueSizing();
+            triangle = paper.path(polygonPath([width / 2, (height / 2) - radius + strokeWidth, 15, 20, -30, 0]));
+            triangle.attr("stroke-width", 0);
+            triangle.attr("fill", "#fff");
+
+            $(element).append($('<div class="pointer-value"></div>').append(valueDiv).append(unitsDiv));
         }
 
         this.onSettingsChanged = function (newSettings) {
-            currentSettings = newSettings;
-
-			var shouldDisplayTitle = (!_.isUndefined(newSettings.title) && newSettings.title != "");
-			var shouldDisplayUnits = (!_.isUndefined(newSettings.units) && newSettings.units != "");
-
-			if(newSettings.sparkline)
-			{
-				sparklineElement.attr("style", null);
-			}
-			else
-			{
-				delete sparklineElement.data().values;
-				sparklineElement.empty();
-				sparklineElement.hide();
-			}
-
-			if(shouldDisplayTitle)
-			{
-				titleElement.html((_.isUndefined(newSettings.title) ? "" : newSettings.title));
-				titleElement.attr("style", null);
-			}
-			else
-			{
-				titleElement.empty();
-				titleElement.hide();
-			}
-
-			if(shouldDisplayUnits)
-			{
-				unitsElement.html((_.isUndefined(newSettings.units) ? "" : newSettings.units));
-				unitsElement.attr("style", null);
-			}
-			else
-			{
-				unitsElement.empty();
-				unitsElement.hide();
-			}
-
-			var valueFontSize = 30;
-
-			if(newSettings.size == "big")
-			{
-				valueFontSize = 65;
-
-				if(newSettings.sparkline)
-				{
-					valueFontSize = 50;
-				}
-			}
-
-			valueElement.css({"font-size" : valueFontSize + "px"});
-
-			updateValueSizing();
+            unitsDiv.html(newSettings.units);
         }
 
-		this.onSizeChanged = function()
-		{
-			updateValueSizing();
-		}
-
         this.onCalculatedValueChanged = function (settingName, newValue) {
-            if (settingName == "value") {
+            if (settingName == "direction") {
+                if (!_.isUndefined(triangle)) {
+                    var direction = "r";
 
-                if (currentSettings.animate) {
-                    easeTransitionText(newValue, valueElement, 500);
-                }
-                else {
-                    valueElement.text(newValue);
+                    var oppositeCurrent = currentValue + 180;
+
+                    if (oppositeCurrent < newValue) {
+                        //direction = "l";
+                    }
+
+                    triangle.animate({transform: "r" + newValue + "," + (width / 2) + "," + (height / 2)}, 250, "bounce");
                 }
 
-                if (currentSettings.sparkline) {
-                    addValueToSparkline(sparklineElement, newValue);
-                }
+                currentValue = newValue;
+            }
+            else if (settingName == "value_text") {
+                valueDiv.html(newValue);
             }
         }
 
         this.onDispose = function () {
-
         }
 
         this.getHeight = function () {
-            if (currentSettings.size == "big" || currentSettings.sparkline) {
-                return 2;
-            }
-            else {
-                return 1;
-            }
+            return 4;
         }
 
         this.onSettingsChanged(settings);
     };
 
     freeboard.loadWidgetPlugin({
-        type_name: "smarthomeSherpa",
-        display_name: "Smarthome Sherpa",
+        type_name: "pointer",
+        display_name: "Pointer",
         "external_scripts" : [
-            "plugins/thirdparty/jquery.sparkline.min.js"
+            "plugins/thirdparty/raphael.2.1.0.min.js"
         ],
         settings: [
             {
-                name: "title",
-                display_name: "Title",
-                type: "text"
+                name: "direction",
+                display_name: "Direction",
+                type: "calculated",
+                description: "In degrees"
             },
             {
-                name: "size",
-                display_name: "Size",
-                type: "option",
-                options: [
-                    {
-                        name: "Regular",
-                        value: "regular"
-                    },
-                    {
-                        name: "Big",
-                        value: "big"
-                    }
-                ]
-            },
-            {
-                name: "value",
-                display_name: "Value",
+                name: "value_text",
+                display_name: "Value Text",
                 type: "calculated"
-            },
-            {
-                name: "sparkline",
-                display_name: "Include Sparkline",
-                type: "boolean"
-            },
-            {
-                name: "animate",
-                display_name: "Animate Value Changes",
-                type: "boolean",
-                default_value: true
             },
             {
                 name: "units",
@@ -179,7 +101,7 @@ var smarthomeSherpa = function (settings) {
             }
         ],
         newInstance: function (settings, newInstanceCallback) {
-            newInstanceCallback(new smarthomeSherpa(settings));
+            newInstanceCallback(new pointerWidget(settings));
         }
     });
 }());
