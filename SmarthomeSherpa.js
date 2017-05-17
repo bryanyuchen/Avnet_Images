@@ -1,7 +1,7 @@
 (function()
 {
 	freeboard.addStyle('div.pointer-value', "position:absolute;height:95px;margin: auto;top: 0px;bottom: 0px;width: 100%;text-align:center;");
-    var pointerWidget = function (settings) {
+    var SSpointerWidget = function (settings) {
         var self = this;
         var paper;
         var strokeWidth = 3;
@@ -77,8 +77,8 @@
     };
 
     freeboard.loadWidgetPlugin({
-        type_name: "pointer",
-        display_name: "Pointer",
+        type_name: "smarthomeSherpa",
+        display_name: "Smarhome Sherpa Pointer",
         "external_scripts" : [
             "plugins/thirdparty/raphael.2.1.0.min.js"
         ],
@@ -101,7 +101,7 @@
             }
         ],
         newInstance: function (settings, newInstanceCallback) {
-            newInstanceCallback(new pointerWidget(settings));
+            newInstanceCallback(new SSpointerWidget(settings));
         }
     });
 }());
