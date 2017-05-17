@@ -116,26 +116,11 @@ var valueStyle = freeboard.getStyleString("values");
 
 			var valueFontSize = 30;
 
-			if(newSettings.size == "big")
-			{
-				valueFontSize = 75;
-
-				if(newSettings.sparkline)
-				{
-					valueFontSize = 60;
-				}
-			}
-
 			valueElement.css({"font-size" : valueFontSize + "px"});
 
 			updateValueSizing();
         }
-
-		this.onSizeChanged = function()
-		{
-			updateValueSizing();
-		}
-
+		
         this.onCalculatedValueChanged = function (settingName, newValue) {
             if (settingName == "value") {
 
@@ -157,12 +142,7 @@ var valueStyle = freeboard.getStyleString("values");
         }
 
         this.getHeight = function () {
-            if (currentSettings.size == "big" || currentSettings.sparkline) {
-                return 2;
-            }
-            else {
-                return 1;
-            }
+            return 4;
         }
 
         this.onSettingsChanged(settings);
@@ -179,22 +159,7 @@ var valueStyle = freeboard.getStyleString("values");
                 name: "title",
                 display_name: "Title",
                 type: "text"
-            },
-            {
-                name: "size",
-                display_name: "Size",
-                type: "option",
-                options: [
-                    {
-                        name: "Regular",
-                        value: "regular"
-                    },
-                    {
-                        name: "Big",
-                        value: "big"
-                    }
-                ]
-            },
+            }
             {
                 name: "value",
                 display_name: "Value",
