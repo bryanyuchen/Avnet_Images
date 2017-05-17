@@ -27,7 +27,7 @@
             width = $(element).width();
             height = $(element).height();
 
-            var radius = width / 2 - strokeWidth * 2;//Math.min(width, height) / 2 - strokeWidth * 2;
+            var radius = Math.min(width, height) / 2 - strokeWidth * 2;
 
             paper = Raphael($(element).get()[0], width, height);
             var circle = paper.circle(width / 2, height / 2, radius);
