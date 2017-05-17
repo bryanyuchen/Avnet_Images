@@ -2,7 +2,6 @@
 {
 var valueStyle = freeboard.getStyleString("values");
 
-   var gaugeID = 0;
 	freeboard.addStyle('.gauge-widget-wrapper', "width: 100%;text-align: center;");
 	freeboard.addStyle('.gauge-widget', "width:200px;height:160px;display:inline-block;");
 
@@ -16,8 +15,7 @@ var valueStyle = freeboard.getStyleString("values");
         var currentSettings = settings;
 
         this.render = function (element) {
-            $(element).append(imageElementTop);
-			$(element).append(imageElementBot);
+            $(element).append(imageElementTop, imageElementBot);
         }
 
         this.onSettingsChanged = function (newSettings) {
@@ -42,14 +40,11 @@ var valueStyle = freeboard.getStyleString("values");
         type_name: "smarthomeSherpa",
         display_name: "SmarthomeSherpa Widget",
         "external_scripts" : [
-            "plugins/thirdparty/raphael.2.1.0.min.js",
-            "plugins/thirdparty/justgage.1.0.1.js"
         ],
         settings: [
-
             {
                 name: "value",
-                display_name: "Value",
+                display_name: "Value (insert datasource)",
                 type: "calculated"
             }
         ],
