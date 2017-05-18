@@ -23,9 +23,9 @@ var valueStyle = freeboard.getStyleString("values");
 		
 		//define states
         var imageElement = $('<h6 class="image-widget-wrapper" style="background-color: rgb(65,195,99);"></h6>');
-		var imageElementTop = $('<img src = "https://c1.staticflickr.com/5/4159/33782256364_a0a64b798b.jpg" style="width:100%">');
+		var imageElementTop = $(ssTopOff);
 		var imageElementBreak = $('<br>');
-		var imageElementBot = $('<img src = "https://c1.staticflickr.com/5/4158/33781839124_3a8cfff44b_z.jpg" style="width:100%">');
+		var imageElementBot = $(sBot8);
 		var imageElementBotPrev;
 		
         var currentSettings = settings;
@@ -41,8 +41,12 @@ var valueStyle = freeboard.getStyleString("values");
         }
 
         this.onCalculatedValueChanged = function (settingName, newValue) {
-			var alertstr = settingName + " " + newValue;
-			alert(alertstr);
+			if (settingName == "fanData"){
+				alert(newValue);
+			}
+			if (settingName == "lightData"){
+				alert(newValue);
+			}
         }
 
         this.onDispose = function () {
@@ -64,8 +68,13 @@ var valueStyle = freeboard.getStyleString("values");
         ],
         settings: [
             {
-                name: "value",
-                display_name: "Datasource",
+                name: "fanData",
+                display_name: "Fan Data (insert IDnum)",
+                type: "calculated"
+            },
+			{
+                name: "lightData",
+                display_name: "Light Sensor Data",
                 type: "calculated"
             }
         ],
