@@ -23,22 +23,38 @@
 		var ssBot5 = $('<div id="div8" style="display:none; position: absolute;"><img src = "https://c1.staticflickr.com/5/4160/33781839344_325ddab700_z.jpg" style="width:100%"></div>');
 		var ssBot6 = $('<div id="div9" style="display:none; position: absolute;"><img src = "https://c1.staticflickr.com/5/4169/34624904525_29c74b198a_z.jpg" style="width:100%"></div>');
 		var ssBot7 = $('<div id="div10" style="display:none; position: absolute;"><img src = "https://c1.staticflickr.com/5/4188/33781839434_a98c5d6eca_z.jpg" style="width:100%"></div>');
-		var ssBot8 = $('<div id="div11" style="display:none; position: absolute;"><img src = "https://c1.staticflickr.com/5/4167/34238935020_fcf814c037_z.jpg" style="width:100%"></div>');
+		var ssBot8 = $('<div id="div11" style="display:block; position: relative;"><img src = "https://c1.staticflickr.com/5/4167/34238935020_fcf814c037_z.jpg" style="width:100%"></div>');
 		
 		//define states
         var imageElement = $('<h6 class="image-widget-wrapper" style="background-color: rgb(65,195,99);"></h6>');
 		var imageElementTop = ssTopOff;
 		var imageElementBreak = $('<br style="display:none;">');
-		var imageElementBot = ssBot8;
 		
         var currentSettings = settings;
 	
-		function updateImageElement() {
-			
+		function refreshLight() {
+			$(ssBot0).css("display","none");
+			$(ssBot0).css("position","absolute");
+			$(ssBot1).css("display","none");
+			$(ssBot1).css("position","absolute");
+			$(ssBot2).css("display","none");
+			$(ssBot2).css("position","absolute");
+			$(ssBot3).css("display","none");
+			$(ssBot3).css("position","absolute");
+			$(ssBot4).css("display","none");
+			$(ssBot4).css("position","absolute");
+			$(ssBot5).css("display","none");
+			$(ssBot5).css("position","absolute");
+			$(ssBot6).css("display","none");
+			$(ssBot6).css("position","absolute");
+			$(ssBot7).css("display","none");
+			$(ssBot7).css("position","absolute");
+			$(ssBot8).css("display","none");
+			$(ssBot8).css("position","absolute");
 		}
         this.render = function (element) {
 			$(element).empty();
-			$(imageElement).append(ssTopOn, ssTopOff, imageElementBreak, imageElementBot);
+			$(imageElement).append(ssTopOn, ssTopOff, imageElementBreak, ssBot0,ssBot1,ssBot2,ssBot3,ssBot4,ssBot5,ssBot6,ssBot7,ssBot8);
             $(element).append(imageElement);
         }
 
@@ -62,48 +78,54 @@
 				}	
 			}
 			if (settingName == "lightData"){
-				$(imageElementBot).css("display","block");
-				$(imageElementBot).css("position","relative");
+				
 				if (newValue != lightPrev) {
 					alert(newValue);
-					//$(imageElementBot).css("display","none");
-					//$(imageElementBot).css("position","absolute");
+					refreshLight
 					if (newValue == 0){
-						imageElementBot = ssBot0;
+						$(ssBot0).css("display","block");
+						$(ssBot0).css("position","relative");
 					}
 					else if (newValue < (1*increment))
 					{
-						imageElementBot = ssBot1;
+						$(ssBot1).css("display","block");
+						$(ssBot1).css("position","relative");
 					}
 					else if (newValue < (2*increment))
 					{
-						imageElementBot = ssBot2;
+						$(ssBot2).css("display","block");
+						$(ssBot2).css("position","relative");
 					}
 					else if (newValue < (3*increment))
 					{
-						imageElementBot = ssBot3;
+						$(ssBot3).css("display","block");
+						$(ssBot3).css("position","relative");
 					}
 					else if (newValue < (4*increment))
 					{
-						imageElementBot = ssBot4;
+						$(ssBot4).css("display","block");
+						$(ssBot4).css("position","relative");
 					}
 					else if (newValue < (5*increment))
 					{
-						imageElementBot = ssBot5;
+						$(ssBot5).css("display","block");
+						$(ssBot5).css("position","relative");
 					}
 					else if (newValue < (6*increment))
 					{
-						imageElementBot = ssBot6;
+						$(ssBot6).css("display","block");
+						$(ssBot6).css("position","relative");
 					}
 					else if (newValue < (7*increment))
 					{
-						imageElementBot = ssBot7;
+						$(ssBot7).css("display","block");
+						$(ssBot7).css("position","relative");
 					}
 					else {
-						imageElementBot = ssBot8;
+						$(ssBot8).css("display","block");
+						$(ssBot8).css("position","relative");
 					}
-					$(imageElementBot).css("display","block");
-					$(imageElementBot).css("position","relative");
+					
 					lightPrev = newValue;
 				}
 			}
