@@ -4,8 +4,14 @@
 
     var SSWidget = function (settings) {
         var self = this;
+		
+		//light variables
 		var lightOn = true;
+		var maxLightLevel = 1601; // set this to the output level when you shine a light on the sensor
+		var minLightLevel = 1;   // set this to the ambient light level or close to 0
+		var increment = (maxLightLevel-minLightLevel)/8;
 		var lightPrev = 0;
+		
 		//define images
 		var ssTopOn = $('<div id="div1" style="display:none; position: absolute;"><img src = "https://raw.githubusercontent.com/bryanyuchen/Avnet_Images/master/sstoponnew.gif" style="width:100%"></div>');
 		var ssTopOff = $('<div id="div2" style="display:none; position: absolute;"><img src = "https://c1.staticflickr.com/5/4159/33782256364_a0a64b798b.jpg" style="width:100%"></div>');
@@ -22,9 +28,8 @@
 		//define states
         var imageElement = $('<h6 class="image-widget-wrapper" style="background-color: rgb(65,195,99);"></h6>');
 		var imageElementTop = ssTopOff;
-		var imageElementBreak = $('<br>');
+		var imageElementBreak = $('<br style="display:none;">');
 		var imageElementBot = ssBot8;
-		var imageElementBotPrev;
 		
         var currentSettings = settings;
 	
@@ -60,7 +65,44 @@
 				$(imageElementBot).css("display","block");
 				$(imageElementBot).css("position","relative");
 				if (newValue != lightPrev) {
-					alert(newValue);
+					$(imageElementBot).css("display","none");
+					$(imageElementBot).css("position","absolute");
+					if (newValue == 0){
+						imageElementBot = ssBot0;
+					}
+					else if (newValue < (1*increment))
+					{
+						imageElementBot = ssBot0;
+					}
+					else if (newValue < (2*increment))
+					{
+						imageElementBot = ssBot0;
+					}
+					else if (newValue < (3*increment))
+					{
+						imageElementBot = ssBot0;
+					}
+					else if (newValue < (4*increment))
+					{
+						imageElementBot = ssBot0;
+					}
+					else if (newValue < (5*increment))
+					{
+						imageElementBot = ssBot0;
+					}
+					else if (newValue < (6*increment))
+					{
+						imageElementBot = ssBot0;
+					}
+					else if (newValue < (7*increment))
+					{
+						imageElementBot = ssBot0;
+					}
+					else {
+						imageElementBot = ssBot0;
+					}
+					$(imageElementBot).css("display","block");
+					$(imageElementBot).css("position","relative");
 					lightPrev = newValue;
 				}
 			}
