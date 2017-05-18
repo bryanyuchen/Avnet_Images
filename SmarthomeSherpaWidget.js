@@ -46,10 +46,12 @@
         this.onCalculatedValueChanged = function (settingName, newValue) {
 			if (settingName == "fanData"){
 				if (newValue == 4){
-				ssTopOn.css("display","block");
+					$(ssTopOn).css("display","block");
+					$(ssTopOn).css("position","relative");
 				}
 				else {
-					ssTopOff.css("display","block")
+					$(ssTopOff).css("display","block");
+					$(ssTopOff).css("position","relative");
 				}	
 			}
 			if (settingName == "lightData"){
