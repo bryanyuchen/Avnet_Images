@@ -1,13 +1,13 @@
 (function()
 {
-var valueStyle = freeboard.getStyleString("values");
+	var valueStyle = freeboard.getStyleString("values");
 
 	freeboard.addStyle('.image-widget-wrapper', "width: 100%;text-align: center;");
 
     var SSWidget = function (settings) {
         var self = this;
 		var lightOn = true;
-		
+		var lightPrev = 0;
 		//define images
 		var ssTopOn = $('<img src = "https://raw.githubusercontent.com/bryanyuchen/Avnet_Images/master/sstoponnew.gif" style="width:100%">');
 		var ssTopOff = $('<img src = "https://c1.staticflickr.com/5/4159/33782256364_a0a64b798b.jpg" style="width:100%">');
@@ -23,9 +23,9 @@ var valueStyle = freeboard.getStyleString("values");
 		
 		//define states
         var imageElement = $('<h6 class="image-widget-wrapper" style="background-color: rgb(65,195,99);"></h6>');
-		var imageElementTop = $(ssTopOff);
+		var imageElementTop = ssTopOff;
 		var imageElementBreak = $('<br>');
-		var imageElementBot = $(sBot8);
+		var imageElementBot = ssBot8;
 		var imageElementBotPrev;
 		
         var currentSettings = settings;
@@ -42,10 +42,14 @@ var valueStyle = freeboard.getStyleString("values");
 
         this.onCalculatedValueChanged = function (settingName, newValue) {
 			if (settingName == "fanData"){
-				alert(newValue);
+				imageElementTop = ssTopOn;
+				this.render();
 			}
 			if (settingName == "lightData"){
-				alert(newValue);
+				if (newValue != lightPrev) {
+					alert(newValue);
+					lightPrev = newValue;
+				}
 			}
         }
 
@@ -62,10 +66,6 @@ var valueStyle = freeboard.getStyleString("values");
     freeboard.loadWidgetPlugin({
         type_name: "smarthomeSherpa",
         display_name: "SmarthomeSherpa Widget",
-        "external_scripts" : [
-            "plugins/thirdparty/raphael.2.1.0.min.js",
-            "plugins/thirdparty/justgage.1.0.1.js"
-        ],
         settings: [
             {
                 name: "fanData",
