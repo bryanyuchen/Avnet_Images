@@ -4,6 +4,7 @@
 	freeboard.addStyle('.image-widget-image',
 		'position:absolute;' +
 		'left:0;' +
+		'top:100%' +
 		'-webkit-transition: opacity 1s ease-in-out;' +
 		'-moz-transition: opacity 1s ease-in-out;' +
 		'-o-transition: opacity 1s ease-in-out;' +
@@ -21,15 +22,15 @@
 		//define images
 		var ssTopOn = $('<img src = "https://raw.githubusercontent.com/bryanyuchen/Avnet_Images/master/sstoponnew.gif" style="width:100%" >');
 		var ssTopOff = $('<img src = "https://c1.staticflickr.com/5/4159/33782256364_a0a64b798b.jpg" style="width:100%" >');
-		var ssBot0 = $('<div style="position:relative"><img src = "https://c1.staticflickr.com/5/4158/33781839124_3a8cfff44b_z.jpg" style="width:100%; opacity:0;" class="image-widget-image"><div>');
-		var ssBot1 = $('<div style="position:relative"><img src = "https://c1.staticflickr.com/5/4187/34238935210_12737c2d95_z.jpg" style="width:100%; opacity:0;" class="image-widget-image"><div>');
-		var ssBot2 = $('<div style="position:relative"><img src = "https://c1.staticflickr.com/5/4188/34238935340_e323f1e6d4_z.jpg" style="width:100%; opacity:0;" class="image-widget-image"><div>');
-		var ssBot3 = $('<div style="position:relative"><img src = "https://c1.staticflickr.com/5/4160/33781839224_ee21c38988_z.jpg" style="width:100%; opacity:0;" class="image-widget-image"><div>');
-		var ssBot4 = $('<div style="position:relative"><img src = "https://c1.staticflickr.com/5/4182/34238935430_cee460e635_z.jpg" style="width:100%; opacity:0;" class="image-widget-image"><div>');
-		var ssBot5 = $('<div style="position:relative"><img src = "https://c1.staticflickr.com/5/4160/33781839344_325ddab700_z.jpg" style="width:100%; opacity:0;" class="image-widget-image"><div>');
-		var ssBot6 = $('<div style="position:relative"><img src = "https://c1.staticflickr.com/5/4169/34624904525_29c74b198a_z.jpg" style="width:100%; opacity:0;" class="image-widget-image"><div>');
-		var ssBot7 = $('<div style="position:relative"><img src = "https://c1.staticflickr.com/5/4188/33781839434_a98c5d6eca_z.jpg" style="width:100%; opacity:0;" class="image-widget-image"><div>');
-		var ssBot8 = $('<div style="position:relative"><img src = "https://c1.staticflickr.com/5/4167/34238935020_fcf814c037_z.jpg" style="width:100%; opacity:1;" class="image-widget-image"><div>');
+		var ssBot0 = $('<img src = "https://c1.staticflickr.com/5/4158/33781839124_3a8cfff44b_z.jpg" style="width:100%; opacity:0;" class="image-widget-image">');
+		var ssBot1 = $('<img src = "https://c1.staticflickr.com/5/4187/34238935210_12737c2d95_z.jpg" style="width:100%; opacity:0;" class="image-widget-image">');
+		var ssBot2 = $('<img src = "https://c1.staticflickr.com/5/4188/34238935340_e323f1e6d4_z.jpg" style="width:100%; opacity:0;" class="image-widget-image">');
+		var ssBot3 = $('<img src = "https://c1.staticflickr.com/5/4160/33781839224_ee21c38988_z.jpg" style="width:100%; opacity:0;" class="image-widget-image">');
+		var ssBot4 = $('<img src = "https://c1.staticflickr.com/5/4182/34238935430_cee460e635_z.jpg" style="width:100%; opacity:0;" class="image-widget-image">');
+		var ssBot5 = $('<img src = "https://c1.staticflickr.com/5/4160/33781839344_325ddab700_z.jpg" style="width:100%; opacity:0;" class="image-widget-image">');
+		var ssBot6 = $('<img src = "https://c1.staticflickr.com/5/4169/34624904525_29c74b198a_z.jpg" style="width:100%; opacity:0;" class="image-widget-image">');
+		var ssBot7 = $('<img src = "https://c1.staticflickr.com/5/4188/33781839434_a98c5d6eca_z.jpg" style="width:100%; opacity:0;" class="image-widget-image">');
+		var ssBot8 = $('<img src = "https://c1.staticflickr.com/5/4167/34238935020_fcf814c037_z.jpg" style="width:100%; opacity:1;" class="image-widget-image">');
 		
 		//define states
         var imageElement = $('<h6 class="image-widget-wrapper" style="background-color: rgb(65,195,99);"></h6>');
@@ -66,6 +67,7 @@
 				
 				if (newValue != lightPrev) {
 					//fade out
+					/*
 					if (lightPrev == 0){
 						$(ssBot0).css("opacity","0");
 					}
@@ -97,38 +99,47 @@
 					// light on
 					if (newValue == 0){
 						$(ssBot0).css("opacity","1");
+						$(ssBot0).css("position","relative");
 					}
 					else if (newValue < (1*increment))
 					{
 						$(ssBot1).css("opacity","1");
+						$(ssBot1).css("position","relative");
 					}
 					else if (newValue < (2*increment))
 					{
 						$(ssBot2).css("opacity","1");
+						$(ssBot2).css("position","relative");
 					}
 					else if (newValue < (3*increment))
 					{
 						$(ssBot3).css("opacity","1");
+						$(ssBot3).css("position","relative");
 					}
 					else if (newValue < (4*increment))
 					{
 						$(ssBot4).css("opacity","1");
+						$(ssBot4).css("position","relative");
 					}
 					else if (newValue < (5*increment))
 					{
 						$(ssBot5).css("opacity","1");
+						$(ssBot5).css("position","relative");
 					}
 					else if (newValue < (6*increment))
 					{
 						$(ssBot6).css("opacity","1");
+						$(ssBot6).css("position","relative");
 					}
 					else if (newValue < (7*increment))
 					{
 						$(ssBot7).css("opacity","1");
+						$(ssBot7).css("position","relative");
 					}
 					else {
 						$(ssBot8).css("opacity","1");
-					}
+						$(ssBot8).css("position","relative");
+					}*/
 					
 					lightPrev = newValue;
 				}
