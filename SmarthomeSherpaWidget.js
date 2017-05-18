@@ -65,41 +65,42 @@
 				$(imageElementBot).css("display","block");
 				$(imageElementBot).css("position","relative");
 				if (newValue != lightPrev) {
-					$(imageElementBot).css("display","none");
-					$(imageElementBot).css("position","absolute");
+					alert(newValue);
+					//$(imageElementBot).css("display","none");
+					//$(imageElementBot).css("position","absolute");
 					if (newValue == 0){
 						imageElementBot = ssBot0;
 					}
-					else if (newVale < (1*increment))
+					else if (newValue < (1*increment))
 					{
-						imageElementBot = ssBot0;
+						imageElementBot = ssBot1;
 					}
-					else if (newVale < (2*increment))
+					else if (newValue < (2*increment))
 					{
-						imageElementBot = ssBot0;
+						imageElementBot = ssBot2;
 					}
-					else if (newVale < (3*increment))
+					else if (newValue < (3*increment))
 					{
-						imageElementBot = ssBot0;
+						imageElementBot = ssBot3;
 					}
-					else if (newVale < (4*increment))
+					else if (newValue < (4*increment))
 					{
-						imageElementBot = ssBot0;
+						imageElementBot = ssBot4;
 					}
-					else if (newVale < (5*increment))
+					else if (newValue < (5*increment))
 					{
-						imageElementBot = ssBot0;
+						imageElementBot = ssBot5;
 					}
-					else if (newVale < (6*increment))
+					else if (newValue < (6*increment))
 					{
-						imageElementBot = ssBot0;
+						imageElementBot = ssBot6;
 					}
-					else if (newVale < (7*increment))
+					else if (newValue < (7*increment))
 					{
-						imageElementBot = ssBot0;
+						imageElementBot = ssBot7;
 					}
 					else {
-						imageElementBot = ssBot0;
+						imageElementBot = ssBot8;
 					}
 					$(imageElementBot).css("display","block");
 					$(imageElementBot).css("position","relative");
