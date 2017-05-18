@@ -1,7 +1,5 @@
 (function()
 {
-	var valueStyle = freeboard.getStyleString("values");
-
 	freeboard.addStyle('.image-widget-wrapper', "width: 100%;text-align: center;");
 
     var SSWidget = function (settings) {
@@ -47,12 +45,20 @@
 			if (settingName == "fanData"){
 				if (newValue == 4){
 					$(ssTopOn).css("display","block");
+					$(ssTopOn).css("position","relative");
+					$(ssTopOff).css("display","none");
+					$(ssTopOff).css("position","absolute");
 				}
 				else {
-					$(ssTopOff).css("display","block")
+					$(ssTopOff).css("display","block");
+					$(ssTopOff).css("position","relative");
+					$(ssTopOn).css("display","none");
+					$(ssTopOn).css("position","absolute");
 				}	
 			}
 			if (settingName == "lightData"){
+				$(imageElementBot).css("display","block");
+				$(imageElementBot).css("position","relative");
 				if (newValue != lightPrev) {
 					alert(newValue);
 					lightPrev = newValue;
