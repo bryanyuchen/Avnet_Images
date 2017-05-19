@@ -1,8 +1,8 @@
 (function()
 {
 	freeboard.addStyle('.image-widget-wrapper', 'width: 100%;text-align: center;');
-	freeboard.addStyle('#cf', 'position:relative;  height: 100px; margin:0 auto;');
-	freeboard.addStyle('#cf img', 'position:absolute;  left:0;  bottom:0; -webkit-transition: opacity 1s ease-in-out;  -moz-transition: opacity 1s ease-in-out;' +
+	freeboard.addStyle('#cf', 'position:relative; width: 100%; height: 500px; margin:0 auto;');
+	freeboard.addStyle('#cf img', 'position:absolute;  left:0;  -webkit-transition: opacity 1s ease-in-out;  -moz-transition: opacity 1s ease-in-out;' +
 	'-o-transition: opacity 1s ease-in-out;  transition: opacity 1s ease-in-out;');
 	freeboard.addStyle('#cf img.top:hover', 'opacity:0;');
     var SSWidget = function (settings) {
@@ -16,11 +16,11 @@
 		var lightPrev = 2600;
 		
 		//define images
-		var ssTopOn = $('<img src = "https://raw.githubusercontent.com/bryanyuchen/Avnet_Images/master/sstoponnew.gif" style="width:100%; display:none;" >');
-		var ssTopOff = $('<img src = "https://c1.staticflickr.com/5/4159/33782256364_a0a64b798b.jpg" display:none;" >');
-		var ssBot0 = $('<img src = "https://c1.staticflickr.com/5/4158/33781839124_3a8cfff44b_z.jpg" style="height:100%; opacity:1;" >');
-		var ssBot1 = $('<img src = "https://c1.staticflickr.com/5/4187/34238935210_12737c2d95_z.jpg" style="width:100%; opacity:1;" >');
-		var ssBot2 = $('<img src = "https://c1.staticflickr.com/5/4188/34238935340_e323f1e6d4_z.jpg" style="width:100%; opacity:1;" >');
+		var ssTopOn = $('<img src = "https://raw.githubusercontent.com/bryanyuchen/Avnet_Images/master/sstoponnew.gif" style="width:100%; display:block;" >');
+		var ssTopOff = $('<img src = "https://c1.staticflickr.com/5/4159/33782256364_a0a64b798b.jpg" style="width:100%; display:none;" >');
+		var ssBot0 = $('<img src = "https://c1.staticflickr.com/5/4158/33781839124_3a8cfff44b_z.jpg" style="width:100%; opacity:0;" >');
+		var ssBot1 = $('<img src = "https://c1.staticflickr.com/5/4187/34238935210_12737c2d95_z.jpg" style="width:100%; opacity:0;" >');
+		var ssBot2 = $('<img src = "https://c1.staticflickr.com/5/4188/34238935340_e323f1e6d4_z.jpg" style="width:100%; opacity:0;" >');
 		var ssBot3 = $('<img src = "https://c1.staticflickr.com/5/4160/33781839224_ee21c38988_z.jpg" style="width:100%; opacity:0;" >');
 		var ssBot4 = $('<img src = "https://c1.staticflickr.com/5/4182/34238935430_cee460e635_z.jpg" style="width:100%; opacity:0;" >');
 		var ssBot5 = $('<img src = "https://c1.staticflickr.com/5/4160/33781839344_325ddab700_z.jpg" style="width:100%; opacity:0;" >');
@@ -33,13 +33,16 @@
 		//define states
         var imageElement = $('<h6 class="image-widget-wrapper" style="background-color: rgb(65,195,99);"></h6>');
 		var imageElementDiv = $('<div id="cf"></div>');
-		var imageElementBreak = $('<br style="display:none;">');
+		var imageElementTopDiv = $('<div id="top" style="top:0"></div>');
+		var imageElementBotDiv = $('<div id="bottom" style="bottom:0"></div>');
+		//var imageElementBreak = $('<br style="display:none;">');
 		
         var currentSettings = settings;
 	
         this.render = function (element) {
 			$(element).empty();
-			$(imageElementDiv).append(ssBot0);
+			$(imageElementDiv).append(imageElementTopDiv, imageElementBotDiv);
+			$(imageElementTopDiv).append(ssTopOn, ssTopOff, ssBot0,ssBot1,ssBot2,ssBot3,ssBot4,ssBot5,ssBot6,ssBot7);
 			//$(imageElementDiv).append(imageElement);
 			//$(imageElement).append(ssTopOn, ssTopOff, imageElementBreak, ssBot8,ssBot0,ssBot1,ssBot2,ssBot3,ssBot4,ssBot5,ssBot6,ssBot7);
             $(element).append(imageElementDiv);
@@ -51,7 +54,7 @@
 
         this.onCalculatedValueChanged = function (settingName, newValue) {
 			if (settingName == "fanData"){
-				/*if (newValue == 4){
+				if (newValue == 4){
 					$(ssTopOn).css("display","block");
 					$(ssTopOn).css("position","relative");
 					$(ssTopOff).css("display","none");
@@ -62,7 +65,7 @@
 					$(ssTopOff).css("position","relative");
 					$(ssTopOn).css("display","none");
 					$(ssTopOn).css("position","absolute");
-				}	*/
+				}	
 			}
 			if (settingName == "lightData"){
 				
