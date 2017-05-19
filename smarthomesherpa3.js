@@ -69,9 +69,9 @@
 			}
 			if (settingName == "lightData"){
 				
-				if (newValue > lightPrev) {
+				if (newValue != lightPrev) {
 					//fade in
-					fadeValue = newValue / maxLightLevel;
+					fadeValue = 1 - (newValue / maxLightLevel);
 					$(ssBot8).css("z-index","-1");
 					$(ssBot0).css("opacity",fadeValue);	
 				}
