@@ -9,10 +9,10 @@
 		
 		//light variables
 		var lightOn = true;
-		var maxLightLevel = 2600; // set this to the output level when you shine a light on the sensor
+		var maxLightLevel = 1300; // set this to the output level when you shine a light on the sensor
 		var minLightLevel = 1;   // set this to the ambient light level or close to 0
 		var increment = (maxLightLevel-minLightLevel)/8;
-		var lightPrev = 2600;
+		var lightPrev = maxLightLevel;
 		
 		//define images
 		var ssTopOn = $('<img src = "https://raw.githubusercontent.com/bryanyuchen/Avnet_Images/master/sstoponnew.gif" style="width:100%; display:none;" >');
