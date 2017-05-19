@@ -26,7 +26,7 @@
 		var ssBot5 = $('<img src = "https://c1.staticflickr.com/5/4160/33781839344_325ddab700_z.jpg" style="width:100%; opacity:0;" >');
 		var ssBot6 = $('<img src = "https://c1.staticflickr.com/5/4169/34624904525_29c74b198a_z.jpg" style="width:100%; opacity:0;" >');
 		var ssBot7 = $('<img src = "https://c1.staticflickr.com/5/4188/33781839434_a98c5d6eca_z.jpg" style="width:100%; opacity:0;" >');
-		var ssBot8 = $('<img src = "https://c1.staticflickr.com/5/4167/34238935020_fcf814c037_z.jpg" style="width:100%; " >');
+		var ssBot8 = $('<img src = "https://c1.staticflickr.com/5/4167/34238935020_fcf814c037_z.jpg" style="width:100%; opacity:1" >');
 		
 		//define states
         var imageElement = $('<h6 class="image-widget-wrapper" style="background-color: rgb(65,195,99);"></h6>');
@@ -37,8 +37,9 @@
 	
         this.render = function (element) {
 			$(element).empty();
-			$(imageElementDiv).append(imageElement);
-			$(imageElement).append(ssTopOn, ssTopOff, imageElementBreak, ssBot8,ssBot0,ssBot1,ssBot2,ssBot3,ssBot4,ssBot5,ssBot6,ssBot7);
+			$(imageElementDiv).append(ssTopOn, ssTopOff, imageElementBreak, ssBot8,ssBot0,ssBot1,ssBot2,ssBot3,ssBot4,ssBot5,ssBot6,ssBot7);
+			//$(imageElementDiv).append(imageElement);
+			//$(imageElement).append(ssTopOn, ssTopOff, imageElementBreak, ssBot8,ssBot0,ssBot1,ssBot2,ssBot3,ssBot4,ssBot5,ssBot6,ssBot7);
             $(element).append(ssBot8);
         }
 
@@ -65,7 +66,7 @@
 				
 				if (newValue != lightPrev) {
 					//fade out
-					/*
+					
 					if (lightPrev == 0){
 						$(ssBot0).css("opacity","0");
 					}
@@ -137,7 +138,7 @@
 					else {
 						$(ssBot8).css("opacity","1");
 						$(ssBot8).css("position","relative");
-					}*/
+					}
 					
 					lightPrev = newValue;
 				}
