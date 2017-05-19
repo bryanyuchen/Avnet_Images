@@ -20,7 +20,7 @@
 		var ssBot0 = $('<img src = "https://c1.staticflickr.com/5/4158/33781839124_3a8cfff44b_z.jpg" style="width:100%; opacity:0; z-index:2;" >');
 		var ssBot8 = $('<img src = "https://c1.staticflickr.com/5/4167/34238935020_fcf814c037_z.jpg" style="width:100%; opacity:1; z-index:1;" >');
 		
-		var lightOnTxt = "<h2 style='font-size:210%; position: absolute;top: -100px ;left: 31px; width: 100%; color: white'>Light On!</h2>";
+		var lightOnTxt = "<h2 style='font-size:210%; position: absolute;top:30% ;left: 31px; width: 100%; color: white'>Light On!</h2>";
 	    
 		//define states
         	var imageElement = $('<h6 class="image-widget-wrapper" style="background-color: rgb(65,195,99);"></h6>');
@@ -32,8 +32,8 @@
 	
         this.render = function (element) {
 			$(element).empty();
-			$(imageElementDiv).append(imageElementTopDiv, imageElementBotDiv);
-			$(imageElementTopDiv).append(ssTopOn, ssTopOff, lightOnTxt);
+			$(imageElementDiv).append(imageElementTopDiv, imageElementBotDiv, lightOnTxt);
+			$(imageElementTopDiv).append(ssTopOn, ssTopOff);
 			$(imageElementBotDiv).append(ssBot0,ssBot8);
 
             $(element).append(imageElementDiv);
