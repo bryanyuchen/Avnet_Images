@@ -20,7 +20,7 @@
 		var ssBot0 = $('<img src = "https://c1.staticflickr.com/5/4158/33781839124_3a8cfff44b_z.jpg" style="width:100%; opacity:0; z-index:2;" >');
 		var ssBot8 = $('<img src = "https://c1.staticflickr.com/5/4167/34238935020_fcf814c037_z.jpg" style="width:100%; opacity:1; z-index:1;" >');
 		
-		var lightOnTxt = "<h2 style='font-size:210%; position: absolute;top:500px ;left: 31px; width: 100%; color: white'>Light On!</h2>";
+		var lightOnTxt = "<h2 style='font-size:210%; position: absolute; top:500px ;left: 36px; width: 100%; color: white; z-index:-1;'>Light On!</h2>";
 	    
 		//define states
         	var imageElement = $('<h6 class="image-widget-wrapper" style="background-color: rgb(65,195,99);"></h6>');
@@ -36,7 +36,7 @@
 			$(imageElementTopDiv).append(ssTopOn, ssTopOff);
 			$(imageElementBotDiv).append(ssBot0,ssBot8);
 
-            $(element).append(imageElementDiv);
+           		 $(element).append(imageElementDiv);
         }
 
         this.onSettingsChanged = function (newSettings) {
@@ -50,12 +50,14 @@
 					$(ssTopOn).css("position","relative");
 					$(ssTopOff).css("display","none");
 					$(ssTopOff).css("position","absolute");
+					$(lightOnTxt).css("z-index","3");
 				}
 				else {
 					$(ssTopOff).css("display","block");
 					$(ssTopOff).css("position","relative");
 					$(ssTopOn).css("display","none");
 					$(ssTopOn).css("position","absolute");
+					$(lightOnTxt).css("z-index","-1");
 				}	
 			}
 			if (settingName == "lightData"){
