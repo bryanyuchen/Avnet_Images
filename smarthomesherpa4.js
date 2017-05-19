@@ -1,7 +1,7 @@
 (function()
 {
 	freeboard.addStyle('.image-widget-wrapper', 'width: 100%;text-align: center;');
-	freeboard.addStyle('#cf', 'position:relative; width: 100%; height: 560px; margin:0 auto;');
+	freeboard.addStyle('#cf', 'position:relative; width: 100%; height: 600px; margin:0 auto;');
 	freeboard.addStyle('#cf img', 'position:absolute;  left:0;  -webkit-transition: opacity 1s ease-in-out;  -moz-transition: opacity 1s ease-in-out;' +
 	'-o-transition: opacity 1s ease-in-out;  transition: opacity 1s ease-in-out;');
     var SSWidget = function (settings) {
@@ -42,7 +42,7 @@
 			$(element).empty();
 			$(imageElementDiv).append(imageElementTopDiv, imageElementBotDiv);
 			$(imageElementTopDiv).append(ssTopOn, ssTopOff);
-			$(imageElementBotDiv).append(ssBot0,ssBot1,ssBot2,ssBot3,ssBot4,ssBot5,ssBot6,ssBot7,ssBot8);
+			$(imageElementBotDiv).append(ssBot0,ssBot8);
 			//$(imageElementDiv).append(imageElement);
 			//$(imageElement).append(ssTopOn, ssTopOff, imageElementBreak, ssBot8,ssBot0,ssBot1,ssBot2,ssBot3,ssBot4,ssBot5,ssBot6,ssBot7);
             $(element).append(imageElementDiv);
@@ -69,74 +69,11 @@
 			}
 			if (settingName == "lightData"){
 				
-				if (newValue != lightPrev) {
-					//fade out
-					
-					if (lightPrev == 0){
-						$(ssBot0).css("opacity","0");
-					}
-					else if (lightPrev < (1*increment)){
-						$(ssBot1).css("opacity","0");
-					}
-					else if (lightPrev < (2*increment)){
-						$(ssBot2).css("opacity","0");
-					}
-					else if (lightPrev < (3*increment)){
-						$(ssBot3).css("opacity","0");
-					}
-					else if (lightPrev < (4*increment)){
-						$(ssBot4).css("opacity","0");
-					}
-					else if (lightPrev < (5*increment)){
-						$(ssBot5).css("opacity","0");
-					}
-					else if (lightPrev < (6*increment)){
-						$(ssBot6).css("opacity","0");
-					}
-					else if (lightPrev < (7*increment)){
-						$(ssBot7).css("opacity","0");
-					}
-					else {
-						$(ssBot8).css("opacity","0");
-					}
-					
-					// light on
-					if (newValue == 0){
-						$(ssBot0).css("opacity","1");
-					}
-					else if (newValue < (1*increment))
-					{
-						$(ssBot1).css("opacity","1");
-					}
-					else if (newValue < (2*increment))
-					{
-						$(ssBot2).css("opacity","1");
-					}
-					else if (newValue < (3*increment))
-					{
-						$(ssBot3).css("opacity","1");
-					}
-					else if (newValue < (4*increment))
-					{
-						$(ssBot4).css("opacity","1");
-					}
-					else if (newValue < (5*increment))
-					{
-						$(ssBot5).css("opacity","1");
-					}
-					else if (newValue < (6*increment))
-					{
-						$(ssBot6).css("opacity","1");
-					}
-					else if (newValue < (7*increment))
-					{
-						$(ssBot7).css("opacity","1");
-					}
-					else {
-						$(ssBot8).css("opacity","1");
-					}
-					
-					lightPrev = newValue;
+				if (newValue > lightPrev) {
+					//fade in
+					fadeValue = 1 - (newValue / maxLightLevel);
+					$(ssBot8).css("z-index","-1");
+					$(ssBot0).css("opacity",fadeValue);	
 				}
 			}
         }
