@@ -16,7 +16,7 @@
 		var lightPrev = 2600;
 		
 		//define images
-		var ssTopOn = $('<img src = "https://raw.githubusercontent.com/bryanyuchen/Avnet_Images/master/sstoponnew.gif" style="width:100%; display:block;" >');
+		var ssTopOn = $('<img src = "https://raw.githubusercontent.com/bryanyuchen/Avnet_Images/master/sstoponnew.gif" style="width:100%; display:none;" >');
 		var ssTopOff = $('<img src = "https://c1.staticflickr.com/5/4159/33782256364_a0a64b798b.jpg" style="width:100%; display:none;" >');
 		var ssBot0 = $('<img src = "https://c1.staticflickr.com/5/4158/33781839124_3a8cfff44b_z.jpg" style="width:100%; opacity:0;" >');
 		var ssBot1 = $('<img src = "https://c1.staticflickr.com/5/4187/34238935210_12737c2d95_z.jpg" style="width:100%; opacity:0;" >');
@@ -33,17 +33,17 @@
 		//define states
         var imageElement = $('<h6 class="image-widget-wrapper" style="background-color: rgb(65,195,99);"></h6>');
 		var imageElementDiv = $('<div id="cf"></div>');
-		var imageElementTopDiv = $('<div id="top" style="top:0;"></div>');
-		var imageElementBotDiv = $('<div id="bottom" style="bottom:0;"></div>');
+		var imageElementTopDiv = $('<div id="top" style="top:0"></div>');
+		var imageElementBotDiv = $('<div id="bottom" style="top:300px"></div>');
 		//var imageElementBreak = $('<br style="display:none;">');
 		
         var currentSettings = settings;
 	
         this.render = function (element) {
 			$(element).empty();
-			$(imageElementDiv).append(imageElementTopDiv, imageElementBotDiv);
-			//$(imageElementTopDiv).append(ssTopOn, ssTopOff);
-			$(imageElementBotDiv).append(ssBot0,ssBot1,ssBot2,ssBot3,ssBot4,ssBot5,ssBot6,ssBot7);
+			//$(imageElementDiv).append(imageElementTopDiv, imageElementBotDiv);
+			$(imageElementTopDiv).append(ssTopOn, ssTopOff);
+			$(imageElementDiv).append(ssBot0,ssBot1,ssBot2,ssBot3,ssBot4,ssBot5,ssBot6,ssBot7,ssBot8);
 			//$(imageElementDiv).append(imageElement);
 			//$(imageElement).append(ssTopOn, ssTopOff, imageElementBreak, ssBot8,ssBot0,ssBot1,ssBot2,ssBot3,ssBot4,ssBot5,ssBot6,ssBot7);
             $(element).append(imageElementDiv);
