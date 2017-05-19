@@ -4,7 +4,6 @@
 	freeboard.addStyle('#cf', 'position:relative; width: 100%; height: 500px; margin:0 auto;');
 	freeboard.addStyle('#cf img', 'position:absolute;  left:0;  -webkit-transition: opacity 1s ease-in-out;  -moz-transition: opacity 1s ease-in-out;' +
 	'-o-transition: opacity 1s ease-in-out;  transition: opacity 1s ease-in-out;');
-	freeboard.addStyle('#cf img.top:hover', 'opacity:0;');
     var SSWidget = function (settings) {
         var self = this;
 		
@@ -18,15 +17,15 @@
 		//define images
 		var ssTopOn = $('<img src = "https://raw.githubusercontent.com/bryanyuchen/Avnet_Images/master/sstoponnew.gif" style="width:100%; display:none;" >');
 		var ssTopOff = $('<img src = "https://c1.staticflickr.com/5/4159/33782256364_a0a64b798b.jpg" style="width:100%; display:none;" >');
-		var ssBot0 = $('<img src = "https://c1.staticflickr.com/5/4158/33781839124_3a8cfff44b_z.jpg" style="width:100%; opacity:0;" >');
-		var ssBot1 = $('<img src = "https://c1.staticflickr.com/5/4187/34238935210_12737c2d95_z.jpg" style="width:100%; opacity:0;" >');
-		var ssBot2 = $('<img src = "https://c1.staticflickr.com/5/4188/34238935340_e323f1e6d4_z.jpg" style="width:100%; opacity:0;" >');
-		var ssBot3 = $('<img src = "https://c1.staticflickr.com/5/4160/33781839224_ee21c38988_z.jpg" style="width:100%; opacity:0;" >');
-		var ssBot4 = $('<img src = "https://c1.staticflickr.com/5/4182/34238935430_cee460e635_z.jpg" style="width:100%; opacity:0;" >');
-		var ssBot5 = $('<img src = "https://c1.staticflickr.com/5/4160/33781839344_325ddab700_z.jpg" style="width:100%; opacity:0;" >');
-		var ssBot6 = $('<img src = "https://c1.staticflickr.com/5/4169/34624904525_29c74b198a_z.jpg" style="width:100%; opacity:0;" >');
-		var ssBot7 = $('<img src = "https://c1.staticflickr.com/5/4188/33781839434_a98c5d6eca_z.jpg" style="width:100%; opacity:0;" >');
-		var ssBot8 = $('<img src = "https://c1.staticflickr.com/5/4167/34238935020_fcf814c037_z.jpg" style="width:100%; opacity:1" >');
+		var ssBot0 = $('<img src = "https://c1.staticflickr.com/5/4158/33781839124_3a8cfff44b_z.jpg" style="width:100%; opacity:0; top: 355px;" >');
+		var ssBot1 = $('<img src = "https://c1.staticflickr.com/5/4187/34238935210_12737c2d95_z.jpg" style="width:100%; opacity:0; top: 355px;" >');
+		var ssBot2 = $('<img src = "https://c1.staticflickr.com/5/4188/34238935340_e323f1e6d4_z.jpg" style="width:100%; opacity:0; top: 355px;" >');
+		var ssBot3 = $('<img src = "https://c1.staticflickr.com/5/4160/33781839224_ee21c38988_z.jpg" style="width:100%; opacity:0; top: 355px;" >');
+		var ssBot4 = $('<img src = "https://c1.staticflickr.com/5/4182/34238935430_cee460e635_z.jpg" style="width:100%; opacity:0; top: 355px;" >');
+		var ssBot5 = $('<img src = "https://c1.staticflickr.com/5/4160/33781839344_325ddab700_z.jpg" style="width:100%; opacity:0; top: 355px;" >');
+		var ssBot6 = $('<img src = "https://c1.staticflickr.com/5/4169/34624904525_29c74b198a_z.jpg" style="width:100%; opacity:0; top: 355px;" >');
+		var ssBot7 = $('<img src = "https://c1.staticflickr.com/5/4188/33781839434_a98c5d6eca_z.jpg" style="width:100%; opacity:0; top: 355px;" >');
+		var ssBot8 = $('<img src = "https://c1.staticflickr.com/5/4167/34238935020_fcf814c037_z.jpg" style="width:100%; opacity:1; top: 355px;" >');
 		
 		var txt1 = "<p>Text.</p>";              // Create text with HTML
 		
@@ -72,7 +71,7 @@
 				
 				if (newValue != lightPrev) {
 					//fade out
-					/*
+					
 					if (lightPrev == 0){
 						$(ssBot0).css("opacity","0");
 					}
@@ -144,7 +143,7 @@
 					else {
 						$(ssBot8).css("opacity","1");
 						$(ssBot8).css("position","relative");
-					}*/
+					}
 					
 					lightPrev = newValue;
 				}
