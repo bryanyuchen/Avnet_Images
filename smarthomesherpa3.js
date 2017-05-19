@@ -40,7 +40,7 @@
 			$(imageElementDiv).append(ssBot0,ssBot1,ssBot2);
 			//$(imageElementDiv).append(imageElement);
 			//$(imageElement).append(ssTopOn, ssTopOff, imageElementBreak, ssBot8,ssBot0,ssBot1,ssBot2,ssBot3,ssBot4,ssBot5,ssBot6,ssBot7);
-            $(element).append(imageElementDiv);
+            $(element).append(ssBot0);
         }
 
         this.onSettingsChanged = function (newSettings) {
