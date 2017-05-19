@@ -36,7 +36,7 @@
 			$(imageElementTopDiv).append(ssTopOn, ssTopOff);
 			$(imageElementBotDiv).append(ssBot0,ssBot8);
 
-            $(element).append(imageElementDiv);
+           		 $(element).append(imageElementDiv);
         }
 
         this.onSettingsChanged = function (newSettings) {
@@ -50,14 +50,14 @@
 					$(ssTopOn).css("position","relative");
 					$(ssTopOff).css("display","none");
 					$(ssTopOff).css("position","absolute");
-					$(lightOnTxt).css("visibility","visible");
+					$(lightOnTxt).css("z-index",3);
 				}
 				else {
 					$(ssTopOff).css("display","block");
 					$(ssTopOff).css("position","relative");
 					$(ssTopOn).css("display","none");
 					$(ssTopOn).css("position","absolute");
-					$(lightOnTxt).css("visibility","hidden");
+					$(lightOnTxt).css("z-index",1);
 				}	
 			}
 			if (settingName == "lightData"){
