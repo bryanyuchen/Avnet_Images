@@ -28,6 +28,8 @@
 		var ssBot7 = $('<img src = "https://c1.staticflickr.com/5/4188/33781839434_a98c5d6eca_z.jpg" style="width:100%; opacity:0;" >');
 		var ssBot8 = $('<img src = "https://c1.staticflickr.com/5/4167/34238935020_fcf814c037_z.jpg" style="width:100%; opacity:1" >');
 		
+		var txt1 = "<p>Text.</p>";              // Create text with HTML
+		
 		//define states
         var imageElement = $('<h6 class="image-widget-wrapper" style="background-color: rgb(65,195,99);"></h6>');
 		var imageElementDiv = $('<div id="cf"></div>');
@@ -37,7 +39,7 @@
 	
         this.render = function (element) {
 			$(element).empty();
-			$(imageElementDiv).append(ssBot0,ssBot1);
+			$(imageElementDiv).append(txt1);
 			//$(imageElementDiv).append(imageElement);
 			//$(imageElement).append(ssTopOn, ssTopOff, imageElementBreak, ssBot8,ssBot0,ssBot1,ssBot2,ssBot3,ssBot4,ssBot5,ssBot6,ssBot7);
             $(element).append(imageElementDiv);
