@@ -1,7 +1,7 @@
 (function()
 {
 	freeboard.addStyle('.image-widget-wrapper', 'width: 100%;text-align: center;');
-	freeboard.addStyle('#cf', 'position:relative;  height: 100%px; margin:0 auto;');
+	freeboard.addStyle('#cf', 'position:relative;  height: 100px; margin:0 auto;');
 	freeboard.addStyle('#cf img', 'position:absolute;  left:0;  bottom:0; -webkit-transition: opacity 1s ease-in-out;  -moz-transition: opacity 1s ease-in-out;' +
 	'-o-transition: opacity 1s ease-in-out;  transition: opacity 1s ease-in-out;');
 	freeboard.addStyle('#cf img.top:hover', 'opacity:0;');
