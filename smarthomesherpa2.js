@@ -26,7 +26,7 @@
 		var ssBot5 = $('<img src = "https://c1.staticflickr.com/5/4160/33781839344_325ddab700_z.jpg" style="width:100%; opacity:0;" >');
 		var ssBot6 = $('<img src = "https://c1.staticflickr.com/5/4169/34624904525_29c74b198a_z.jpg" style="width:100%; opacity:0;" >');
 		var ssBot7 = $('<img src = "https://c1.staticflickr.com/5/4188/33781839434_a98c5d6eca_z.jpg" style="width:100%; opacity:0;" >');
-		var ssBot8 = $('<img src = "https://c1.staticflickr.com/5/4167/34238935020_fcf814c037_z.jpg" style="width:100%; opacity:1" >');
+		var ssBot8 = $('<img src = "https://c1.staticflickr.com/5/4167/34238935020_fcf814c037_z.jpg" style="width:100%; opacity:1; top: 300px;" >');
 		
 		var txt1 = "<p>Text.</p>";              // Create text with HTML
 		
@@ -34,7 +34,7 @@
         var imageElement = $('<h6 class="image-widget-wrapper" style="background-color: rgb(65,195,99);"></h6>');
 		var imageElementDiv = $('<div id="cf"></div>');
 		var imageElementTopDiv = $('<div id="top" style="top:0"></div>');
-		var imageElementBotDiv = $('<div id="bottom" style="top:70%"></div>');
+		var imageElementBotDiv = $('<div id="bottom" style="top:300px"></div>');
 		//var imageElementBreak = $('<br style="display:none;">');
 		
         var currentSettings = settings;
