@@ -25,7 +25,7 @@
 		var ssBot5 = $('<img src = "https://c1.staticflickr.com/5/4160/33781839344_325ddab700_z.jpg" style="width:100%; opacity:0; top: 360px;" >');
 		var ssBot6 = $('<img src = "https://c1.staticflickr.com/5/4169/34624904525_29c74b198a_z.jpg" style="width:100%; opacity:0; top: 360px;" >');
 		var ssBot7 = $('<img src = "https://c1.staticflickr.com/5/4188/33781839434_a98c5d6eca_z.jpg" style="width:100%; opacity:0; top: 360px;" >');
-		var ssBot8 = $('<img src = "https://c1.staticflickr.com/5/4167/34238935020_fcf814c037_z.jpg" style="width:100%; opacity:1; top: 360px;" >');
+		var ssBot8 = $('<img src = "https://c1.staticflickr.com/5/4167/34238935020_fcf814c037_z.jpg" style="width:100%; opacity:0; top: 360px;" >');
 		
 		var txt1 = "<p>Text.</p>";              // Create text with HTML
 		
@@ -42,7 +42,7 @@
 			$(element).empty();
 			$(imageElementDiv).append(imageElementTopDiv, imageElementBotDiv);
 			$(imageElementTopDiv).append(ssTopOn, ssTopOff);
-			$(imageElementBotDiv).append(ssBot0,ssBot1,ssBot2,ssBot3,ssBot4,ssBot5,ssBot6,ssBot7,ssBot8);
+			$(imageElementBotDiv).append(ssBot0,ssBot8);
 			//$(imageElementDiv).append(imageElement);
 			//$(imageElement).append(ssTopOn, ssTopOff, imageElementBreak, ssBot8,ssBot0,ssBot1,ssBot2,ssBot3,ssBot4,ssBot5,ssBot6,ssBot7);
             $(element).append(imageElementDiv);
@@ -70,73 +70,10 @@
 			if (settingName == "lightData"){
 				
 				if (newValue != lightPrev) {
-					//fade out
-					
-					if (lightPrev == 0){
-						$(ssBot0).css("opacity","0");
-					}
-					else if (lightPrev < (1*increment)){
-						$(ssBot1).css("opacity","0");
-					}
-					else if (lightPrev < (2*increment)){
-						$(ssBot2).css("opacity","0");
-					}
-					else if (lightPrev < (3*increment)){
-						$(ssBot3).css("opacity","0");
-					}
-					else if (lightPrev < (4*increment)){
-						$(ssBot4).css("opacity","0");
-					}
-					else if (lightPrev < (5*increment)){
-						$(ssBot5).css("opacity","0");
-					}
-					else if (lightPrev < (6*increment)){
-						$(ssBot6).css("opacity","0");
-					}
-					else if (lightPrev < (7*increment)){
-						$(ssBot7).css("opacity","0");
-					}
-					/*else {
-						$(ssBot8).css("opacity","0");
-					}*/
-					//$(ssBot8).css("opacity","0.3");
-					// light on
-					if (newValue == 0){
-						$(ssBot0).css("opacity","1");
-					}
-					else if (newValue < (1*increment))
-					{
-						$(ssBot1).css("opacity","1");
-					}
-					else if (newValue < (2*increment))
-					{
-						$(ssBot2).css("opacity","1");
-					}
-					else if (newValue < (3*increment))
-					{
-						$(ssBot3).css("opacity","1");
-					}
-					else if (newValue < (4*increment))
-					{
-						$(ssBot4).css("opacity","1");
-					}
-					else if (newValue < (5*increment))
-					{
-						$(ssBot5).css("opacity","1");
-					}
-					else if (newValue < (6*increment))
-					{
-						$(ssBot6).css("opacity","1");
-					}
-					else if (newValue < (7*increment))
-					{
-						$(ssBot7).css("opacity","1");
-					}
-					else {
-						$(ssBot8).css("opacity","1");
-					}
-					
-					lightPrev = newValue;
+					//fade in
+					fadeValue = 1 - (newValue / maxLightLevel);
+					$(ssBot8).css("z-index","-1");
+					$(ssBot0).css("opacity",fadeValue);	
 				}
 			}
         }
