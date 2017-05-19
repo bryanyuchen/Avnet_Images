@@ -1,7 +1,7 @@
 (function()
 {
 	freeboard.addStyle('.image-widget-wrapper', 'width: 100%;text-align: center;');
-	freeboard.addStyle('#cf', 'position:relative;  height: 100%; margin:0 auto;');
+	freeboard.addStyle('#cf', 'position:relative; width: 100%; height: 480px; margin:0 auto;');
 	freeboard.addStyle('#cf img', 'position:absolute;  left:0;  bottom:0; -webkit-transition: opacity 1s ease-in-out;  -moz-transition: opacity 1s ease-in-out;' +
 	'-o-transition: opacity 1s ease-in-out;  transition: opacity 1s ease-in-out;');
 	freeboard.addStyle('#cf img.top:hover', 'opacity:0;');
@@ -16,8 +16,8 @@
 		var lightPrev = 2600;
 		
 		//define images
-		var ssTopOn = $('<img src = "https://raw.githubusercontent.com/bryanyuchen/Avnet_Images/master/sstoponnew.gif" style="width:100%; display:none;" >');
-		var ssTopOff = $('<img src = "https://c1.staticflickr.com/5/4159/33782256364_a0a64b798b.jpg" style="width:100%; display:none;" >');
+		var ssTopOn = $('<img src = "https://raw.githubusercontent.com/bryanyuchen/Avnet_Images/master/sstoponnew.gif" style="width:100%; display:block;" >');
+		var ssTopOff = $('<img src = "https://c1.staticflickr.com/5/4159/33782256364_a0a64b798b.jpg" style="width:100%; display:block;" >');
 		var ssBot0 = $('<img src = "https://c1.staticflickr.com/5/4158/33781839124_3a8cfff44b_z.jpg" style="width:100%; opacity:1;" >');
 		var ssBot1 = $('<img src = "https://c1.staticflickr.com/5/4187/34238935210_12737c2d95_z.jpg" style="width:100%; opacity:1;" >');
 		var ssBot2 = $('<img src = "https://c1.staticflickr.com/5/4188/34238935340_e323f1e6d4_z.jpg" style="width:100%; opacity:1;" >');
@@ -39,7 +39,7 @@
 	
         this.render = function (element) {
 			$(element).empty();
-			$(imageElementDiv).append(ssBot0);
+			$(imageElementDiv).append(ssTopOn, ssTopOff);
 			//$(imageElementDiv).append(imageElement);
 			//$(imageElement).append(ssTopOn, ssTopOff, imageElementBreak, ssBot8,ssBot0,ssBot1,ssBot2,ssBot3,ssBot4,ssBot5,ssBot6,ssBot7);
             $(element).append(imageElementDiv);
