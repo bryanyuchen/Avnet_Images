@@ -69,7 +69,7 @@
 					//fade in
 					fadeValue = 1 - (newValue / maxLightLevel);
 					$(ssBot0).css("opacity",fadeValue);	
-					$(lightOnTxt).css("display","block");
+					$(lightOnTxt).css("display","initial");
 				}
 			}
         }
