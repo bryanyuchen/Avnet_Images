@@ -62,15 +62,19 @@
 				}	
 			}
 			if (settingName == "lightData"){
-				if (newValue >= maxLightLevel) {
-					$(lightOnTxt).css("display","none");
-				}
 				if (newValue != lightPrev) {
 					//fade in
 					fadeValue = 1 - (newValue / maxLightLevel);
-					$(ssBot0).css("opacity",fadeValue);	
-					$(lightOnTxt).css("display","initial");
+					$(ssBot0).css("opacity",fadeValue);
+					alert(newValue > maxLightLevel);
+					if (newValue > maxLightLevel) {
+						$(lightOnTxt).css("display","none");
+					}
+					//else {
+					//	$(lightOnTxt).css("display","initial");
+					//}
 				}
+				
 			}
         }
 
