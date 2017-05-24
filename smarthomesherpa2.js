@@ -21,10 +21,10 @@
 		var ssBot8 = $('<img src = "https://c1.staticflickr.com/5/4167/34238935020_fcf814c037_z.jpg" style="width:100%; opacity:1; z-index:1;" >');
 		
 	   	 //light on text
-		var lightOnTxt = "<h2 style='font-size:210%; position: absolute; top:500px ;left: 36px; width: 100%; color: white; z-index:3;'>Light On!</h2>";
+		var lightOnTxt = "<h2 id='lightOnText' style='font-size:210%; position: absolute; top:500px ;left: 36px; width: 100%; color: white; z-index:3;'>Light On!</h2>";
 	    
 		//define states
-        	var imageElement = $('<h6 class="image-widget-wrapper" style="background-color: rgb(65,195,99);"></h6>');
+        	//var imageElement = $('<h6 class="image-widget-wrapper" style="background-color: rgb(65,195,99);"></h6>');
 		var imageElementDiv = $('<div id="cf"></div>');
 		var imageElementTopDiv = $('<div id="top" style="top:0; position:relative;"></div>');
 		var imageElementBotDiv = $('<div id="bottom" style="position:relative;"></div>');
@@ -62,15 +62,19 @@
 				}	
 			}
 			if (settingName == "lightData"){
-				if (newValue >= maxLightLevel) {
-					$(lightOnTxt).css("display","none");
-				}
 				if (newValue != lightPrev) {
 					//fade in
 					fadeValue = 1 - (newValue / maxLightLevel);
-					$(ssBot0).css("opacity",fadeValue);	
-					$(lightOnTxt).css("display","initial");
+					$(ssBot0).css("opacity",fadeValue);
+					alert(newValue > maxLightLevel);
+					if (newValue > maxLightLevel) {
+						$("#lightOnText").css("display","none");
+					}
+					//else {
+					//	$(lightOnTxt).css("display","initial");
+					//}
 				}
+				
 			}
         }
 
