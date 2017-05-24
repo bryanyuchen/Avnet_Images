@@ -62,7 +62,7 @@
 				}	
 			}
 			if (settingName == "lightData"){
-				if (newValue == maxLightLevel) {
+				if (newValue >= maxLightLevel) {
 					$(lightOnTxt).css("display","none");
 				}
 				if (newValue != lightPrev) {
