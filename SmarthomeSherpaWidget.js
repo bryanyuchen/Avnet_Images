@@ -22,7 +22,7 @@
 		var ssBot8 = $('<img src = "https://c1.staticflickr.com/5/4167/34238935020_fcf814c037_z.jpg" style="width:100%; opacity:1; z-index:1;" >');
 		
 	   	 //light on text
-		var lightOnTxt = "<h2 id='lightOnText' style='font-size:210%; position: absolute; top:500px ;left: 36px; width: 100%; color: white; z-index:3;'>Light On!</h2>";
+		var lightOnTxt = "<h2 id='lightOnText' style='font-size:210%; position: absolute; top:500px ;left: 36px; width: 100%; color: white; z-index:3; display:none'>Light On!</h2>";
 	    
 		//define states
 		var imageElementDiv = $('<div id="cf"></div>');
