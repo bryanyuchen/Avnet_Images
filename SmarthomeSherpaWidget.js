@@ -2,6 +2,7 @@
 {
 	freeboard.addStyle('.image-widget-wrapper', 'width: 100%;text-align: center;');
 	freeboard.addStyle('#cf', 'position:relative; width: 100%; height: 600px; margin:0 auto;');
+	// any images of cf will display image fading properites
 	freeboard.addStyle('#cf img', 'position:absolute;  left:0;  -webkit-transition: opacity 1s ease-in-out;  -moz-transition: opacity 1s ease-in-out;' +
 	'-o-transition: opacity 1s ease-in-out;  transition: opacity 1s ease-in-out;');
     var SSWidget = function (settings) {
@@ -16,7 +17,7 @@
 		
 		//define images
 		var ssTopOn = $('<img src = "https://raw.githubusercontent.com/bryanyuchen/Avnet_Images/master/sstoponnew.gif" style="width:100%; display:none;" >');
-		var ssTopOff = $('<img src = "https://c1.staticflickr.com/5/4159/33782256364_a0a64b798b.jpg" style="width:100%; display:none;" >');
+		var ssTopOff = $('<img src = "https://c1.staticflickr.com/5/4159/33782256364_a0a64b798b.jpg" style="width:100%; display:block; position:relative;" >');
 		var ssBot0 = $('<img src = "https://c1.staticflickr.com/5/4158/33781839124_3a8cfff44b_z.jpg" style="width:100%; opacity:0; z-index:2;" >');
 		var ssBot8 = $('<img src = "https://c1.staticflickr.com/5/4167/34238935020_fcf814c037_z.jpg" style="width:100%; opacity:1; z-index:1;" >');
 		
@@ -24,7 +25,6 @@
 		var lightOnTxt = "<h2 id='lightOnText' style='font-size:210%; position: absolute; top:500px ;left: 36px; width: 100%; color: white; z-index:3;'>Light On!</h2>";
 	    
 		//define states
-        	//var imageElement = $('<h6 class="image-widget-wrapper" style="background-color: rgb(65,195,99);"></h6>');
 		var imageElementDiv = $('<div id="cf"></div>');
 		var imageElementTopDiv = $('<div id="top" style="top:0; position:relative;"></div>');
 		var imageElementBotDiv = $('<div id="bottom" style="position:relative;"></div>');
@@ -36,8 +36,7 @@
 			$(imageElementDiv).append(imageElementTopDiv, imageElementBotDiv, lightOnTxt);
 			$(imageElementTopDiv).append(ssTopOn, ssTopOff);
 			$(imageElementBotDiv).append(ssBot0,ssBot8);
-
-           		 $(element).append(imageElementDiv);
+           		$(element).append(imageElementDiv);
         }
 
         this.onSettingsChanged = function (newSettings) {
@@ -45,6 +44,7 @@
         }
 
         this.onCalculatedValueChanged = function (settingName, newValue) {
+			// turn on|off fan animation
 			if (settingName == "fanData"){
 				if (newValue == 4){
 					$(ssTopOn).css("display","block");
@@ -61,6 +61,7 @@
 					
 				}	
 			}
+			// fade light animation to respective light level in inverse fashion
 			if (settingName == "lightData"){
 				if (newValue != lightPrev) {
 					//fade in
@@ -72,8 +73,7 @@
 					else {
 						$("#lightOnText").css("display","initial");
 					}
-				}
-				
+				}		
 			}
         }
 
